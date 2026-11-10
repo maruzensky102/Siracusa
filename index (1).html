@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio · Dark Hour</title>
+<meta name="description" content="Portofolio developer bertema Persona 3 Reload">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --midnight:#030a1e; --deep:#07194a; --tartarus:#0d3a9c;
+  --cyan:#3be8ff; --ice:#d8f6ff; --coffin:#9fc4ff;
+  --display:"Bebas Neue",Impact,"Arial Narrow",sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--midnight);color:var(--ice);font-family:var(--body);line-height:1.6;overflow-x:hidden;
+  background-image:
+    repeating-linear-gradient(-60deg,transparent 0 46px,rgba(59,232,255,.035) 46px 48px),
+    radial-gradient(ellipse at 80% -10%,rgba(13,58,156,.7),transparent 60%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.02em;line-height:1}
+.wrap{width:min(1000px,100% - 2.5rem);margin-inline:auto}
+main{padding:3.5rem 0 2rem;min-height:100svh}
+
+/* BACKGROUND VIDEO */
+.bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.bg-overlay{position:fixed;inset:0;background:rgba(3,10,30,.6);z-index:-1}
+@media(prefers-reduced-motion:reduce){.bg-video{display:none}}
+
+/* NAMA */
+h1{
+  font-size:clamp(2.8rem,10vw,5.5rem);color:var(--midnight);background:var(--ice);display:inline-block;
+  padding:.15em .5em .05em;transform:skewX(-10deg);box-shadow:8px 8px 0 var(--tartarus);
+  animation:enter .7s cubic-bezier(.2,.8,.2,1) both;
+}
+h1 span{display:inline-block;transform:skewX(10deg)}
+.tagline{max-width:34rem;margin:1.4rem 0 3rem;font-size:1.1rem;color:var(--coffin)}
+
+/* BLOK */
+.block{margin-bottom:3rem}
+.title{font-size:clamp(2.4rem,7vw,3.6rem);display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem}
+.title small{font-family:var(--body);font-size:1rem;color:var(--cyan);font-weight:500}
+.title::after{content:"";flex:1;height:4px;background:linear-gradient(90deg,var(--cyan),transparent);align-self:center}
+.panel{background:rgba(7,25,74,.75);border-left:6px solid var(--cyan);padding:1.5rem 1.75rem;clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)}
+.about{display:grid;gap:1.5rem;grid-template-columns:1fr}
+.about p+p{margin-top:1rem}
+.facts{list-style:none;display:grid;gap:.6rem}
+.facts li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid rgba(159,196,255,.25);padding-bottom:.4rem}
+.facts b{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--cyan)}
+
+/* STATS */
+.stats{display:grid;gap:1.25rem}
+.stat{display:grid;grid-template-columns:minmax(120px,190px) 1fr auto;align-items:center;gap:1rem}
+.stat h3{font-size:1.6rem}
+.bar{display:flex;gap:4px;transform:skewX(-20deg)}
+.bar i{flex:1;height:18px;background:rgba(159,196,255,.18)}
+.bar i.f{background:var(--cyan);box-shadow:0 0 10px rgba(59,232,255,.5)}
+.stat em{font-style:normal;font-family:var(--display);font-size:1.3rem;color:var(--coffin)}
+
+/* LINK */
+.contact p{max-width:34rem;color:var(--coffin)}
+.btns{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+.btn{
+  font-family:var(--display);font-size:1.5rem;text-decoration:none;padding:.35rem 1.6rem .2rem;
+  transform:skewX(-14deg);background:var(--cyan);color:var(--midnight);border:2px solid var(--cyan);transition:transform .15s;
+}
+.btn span{display:inline-block;transform:skewX(14deg)}
+.btn.alt{background:transparent;color:var(--cyan)}
+.btn:hover{transform:skewX(-14deg) translateY(-3px)}
+
+footer{padding:2rem 0 3rem;text-align:center;color:var(--coffin);font-size:.9rem;border-top:2px solid var(--tartarus)}
+
+@keyframes enter{from{opacity:0;transform:translateX(-40px) skewX(-10deg)}to{opacity:1;transform:skewX(-10deg)}}
+@media(min-width:800px){.about{grid-template-columns:1.6fr 1fr}}
+@media(max-width:560px){.stat{grid-template-columns:1fr auto}.stat .bar{grid-column:1/-1;order:3}}
+@media(prefers-reduced-motion:reduce){h1{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline aria-hidden="true">
+  <source src="bg.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
+
+<main>
+  <div class="wrap">
+    <h1><span id="name">NAMA KAMU</span></h1>
+    <p class="tagline" id="tagline"></p>
+
+    <section class="block" aria-labelledby="t-profile">
+      <h2 class="title" id="t-profile">Profile <small>Arcana: The Fool</small></h2>
+      <div class="about">
+        <div class="panel" id="bio">
+          <p>Halo, aku <b>NAMA KAMU</b>. Aku suka mengubah ide menjadi sesuatu yang bisa dipakai orang. Tulis di sini ceritamu: latar belakang, apa yang sedang kamu pelajari, dan apa yang kamu cari.</p>
+          <p>Di luar kode, aku suka game, musik, dan tentu saja JRPG favoritku.</p>
+        </div>
+        <div class="panel"><ul class="facts" id="facts"></ul></div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="t-stats">
+      <h2 class="title" id="t-stats">Stats <small>Seperti parameter Social Link</small></h2>
+      <div class="panel"><div class="stats" id="stats"></div></div>
+    </section>
+
+    <section class="block contact" aria-labelledby="t-link">
+      <h2 class="title" id="t-link">Link Up</h2>
+      <div class="panel">
+        <p>Mau berkolaborasi atau sekadar ngobrol? Hubungi aku lewat salah satu jalur di bawah.</p>
+        <div class="btns" id="contactBtns"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap">© <span id="yr"></span> <span id="foot"></span>. Terinspirasi dari Persona 3 Reload, fan project tidak resmi.</div></footer>
+
+<script>
+/* ====== EDIT BAGIAN INI SAJA ====== */
+const ME = {
+  name: "NAMA KAMU",
+  tagline: "Developer yang aktif di Dark Hour: membangun web, aplikasi, dan hal-hal yang belum ada.",
+  github: "https://github.com/USERNAME",
+  email: "kamu@email.com",
+  linkedin: "https://linkedin.com/in/USERNAME",
+  facts: [
+    ["Lokasi", "Yogyakarta, Indonesia"],
+    ["Fokus", "Web Development"],
+    ["Status", "Terbuka untuk kerja"],
+    ["Bahasa", "Indonesia, English"]
+  ],
+  skills: [
+    ["HTML & CSS", 4], ["JavaScript", 3], ["Python", 3], ["Git & GitHub", 4], ["UI Design", 2]
+  ]  /* angka 1–5 */
+};
+/* ================================== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.title = ME.name + " · Portofolio";
+$("name").textContent = ME.name;
+$("tagline").textContent = ME.tagline;
+$("foot").textContent = ME.name;
+$("yr").textContent = new Date().getFullYear();
+document.querySelector("#bio b").textContent = ME.name;
+
+$("facts").innerHTML = ME.facts.map(([k, v]) => `<li><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join("");
+
+$("stats").innerHTML = ME.skills.map(([n, lv]) => `
+  <div class="stat"><h3>${esc(n)}</h3>
+  <div class="bar" role="img" aria-label="Level ${lv} dari 5">${[1,2,3,4,5].map(i => `<i class="${i <= lv ? "f" : ""}"></i>`).join("")}</div>
+  <em>Rank ${lv}</em></div>`).join("");
+
+$("contactBtns").innerHTML =
+  `<a class="btn" href="mailto:${esc(ME.email)}"><span>Email</span></a>` +
+  `<a class="btn alt" href="${esc(ME.github)}" target="_blank" rel="noopener"><span>GitHub</span></a>` +
+  `<a class="btn alt" href="${esc(ME.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span></a>`;
+</script>
+</body>
+</html>
